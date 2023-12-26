@@ -24,10 +24,10 @@ class MyApp extends StatelessWidget {
       routes: {
         RegisterPage.id: (context) => const RegisterPage(),
         LoginPage.id: (context) => const LoginPage(),
-        ChatPage.id: (context) => const ChatPage(),
+        ChatPage.id: (context) => ChatPage(),
       },
       debugShowCheckedModeBanner: false,
-      initialRoute: ChatPage.id,
+      initialRoute: LoginPage.id,
     );
   }
 }

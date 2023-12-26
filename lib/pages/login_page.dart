@@ -86,6 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: "Email",
                 ),
                 CustomFormTextField(
+                  obscure: true,
                   onchanged: (data) {
                     password = data;
                   },
@@ -106,7 +107,8 @@ class _LoginPageState extends State<LoginPage> {
                         final credential = await FirebaseAuth.instance
                             .signInWithEmailAndPassword(
                                 email: email!, password: password!);
-                        Navigator.pushNamed(context, ChatPage.id);
+                        Navigator.pushNamed(context, ChatPage.id,
+                            arguments: email);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == "user-not-found") {
                           showSnakBar(context, "No user found for that email.");
@@ -114,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                           showSnakBar(context,
                               "invalid information the password or the email is wrong");
                         } else {
-                          showSnakBar(context, "there is an error");
+                          showSnakBar(context, "NO internet conection");
                         }
                       } catch (e) {
                         print(e);

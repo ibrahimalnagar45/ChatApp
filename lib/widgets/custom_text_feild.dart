@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 
 class CustomFormTextField extends StatelessWidget {
- const CustomFormTextField({
+    CustomFormTextField({
     super.key,
     this.hintText,
     required this.onchanged,
     required this.validator,
+      this.obscure=false,
   });
   final String? hintText;
- final Function(String) onchanged;
- final String? Function(String?) validator;
+  final Function(String) onchanged;
+  final String? Function(String?) validator;
+    bool? obscure;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
+        obscureText: obscure!,
+      
         keyboardType: TextInputType.emailAddress,
         validator: validator,
         onChanged: onchanged,

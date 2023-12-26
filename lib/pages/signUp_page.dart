@@ -89,6 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: "Email",
                 ),
                 CustomFormTextField(
+                  obscure: true,
                   validator: (data) {
                     if (data!.isEmpty) return 'required feild';
                   },
@@ -113,8 +114,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           email: email!,
                           password: password!,
                         );
-                      }
-                      on FirebaseAuthException catch (e) {
+                        Navigator.pushNamed(context, ChatPage.id,
+                            arguments: email);
+                      } on FirebaseAuthException catch (e) {
                         if (e.code == "weak-password") {
                           showSnakBar(context,
                               'the password is weak try something els');
@@ -127,14 +129,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           showSnakBar(
                               context, "there is an error ${e.toString()}");
                         }
-                      }
-                       catch (e) {
+                      } catch (e) {
                         print(e);
                         showSnakBar(
                           context,
                           "there is an error  ",
                         );
-                      } 
+                      }
 
                       // Navigator.pushNamed(context, ChatPage.id);
 
